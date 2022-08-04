@@ -2,7 +2,6 @@
 
 namespace App\Command;
 
-use App\Entity\Email;
 use App\Message\EmailMessage;
 use App\Repository\EmailRepository;
 use Symfony\Component\Console\Command\Command;
@@ -33,7 +32,7 @@ class NotificationCommand extends Command
 
         foreach ($emails as $email) {
             $output->writeln('Отправляется сообщение для ' . $email->getAddress());
-            $this->bus->dispatch(new EmailMessage('test', 'test'));
+            $this->bus->dispatch(new EmailMessage($email->getAddress(), 'test'));
         }
 
         return Command::SUCCESS;
