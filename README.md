@@ -32,3 +32,11 @@ $ bin/console messenger:consume async -vv
 ~~~
     $ bin/console app:notification "тема письма" "текст сообщения"
 ~~~
+
+ТЕСТИРОВАНИЕ
+-------------------
+
+1. Unit Тесты:
+  ~~~
+    $ ./vendor/bin/phpunit
+  ~~~
