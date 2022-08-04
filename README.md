@@ -1,6 +1,7 @@
 <p align="center">
     <h1 align="center">Symfony RabbitMq</h1>
-    <h2 align="center">Пример работы с брокером очередей RabbitMQ с Symfony 5.4</h2>
+    <h2 align="center">Консольное приложение для рассылки уведомлений по Email</h2>
+    <h3 align="center">Пример работы с брокером очередей RabbitMQ с Symfony 5.4</h3>
     <br>
 </p>
 
@@ -14,6 +15,10 @@
     $ cd SymfonyRabbitMq
     $ composer install
   ~~~
+  необходимо клонировать файл конфигурации .env в .env.local и отредактировать параметры `DATABASE_URL, MAILER_DSN, MAILER_FROM`.
+  ~~~
+    $ bin/console doctrine:migrations:migrate
+  ~~~
 
 2. [Установка RabbitMQ](https://losst.ru/ustanovka-rabbitmq-v-ubuntu-20-04):
 
@@ -23,7 +28,7 @@
 $ bin/console messenger:consume async -vv
 ~~~
 
-4. Отправка тестового сообщения через контроллер:
+4. Отправление рассылки сообщений:
 ~~~
-URL: https://hostname/send
+    $ bin/console app:notification "тема письма" "текст сообщения"
 ~~~

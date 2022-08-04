@@ -21,7 +21,7 @@ class EmailMessageHandler implements MessageHandlerInterface
     {
         $email = (new Email())
             ->to($emailMessage->getAddress())
-            ->subject('Новое сообщение!')
+            ->subject($emailMessage->getSubject())
             ->text($emailMessage->getMessage());
 
         $this->mailer->send($email);
