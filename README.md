@@ -10,15 +10,17 @@
 -------------------
 
 1. Установка приложения:
-  ~~~
+~~~
     $ git clone git@github.com:PRodionovDev/SymfonyRabbitMq.git
     $ cd SymfonyRabbitMq
     $ composer install
-  ~~~
-  необходимо клонировать файл конфигурации .env в .env.local и отредактировать параметры `DATABASE_URL, MAILER_DSN, MAILER_FROM`.
-  ~~~
+~~~
+  необходимо клонировать файл конфигурации .env и .env.test в .env.local и .env.test.local и отредактировать параметры `DATABASE_URL, MAILER_DSN, MAILER_FROM`.
+~~~
+    $ bin/console doctrine:database:create
+    $ bin/console doctrine:database:create --env=test
     $ bin/console doctrine:migrations:migrate
-  ~~~
+~~~
 
 2. [Установка RabbitMQ](https://losst.ru/ustanovka-rabbitmq-v-ubuntu-20-04):
 
@@ -36,7 +38,11 @@ $ bin/console messenger:consume async -vv
 ТЕСТИРОВАНИЕ
 -------------------
 
-1. Unit Тесты:
-  ~~~
+1. Unit и Функциональные тесты:
+~~~
+    $ bin/console doctrine:database:drop --force --env=test || true
+    $ bin/console doctrine:database:create --env=test
+    $ bin/console doctrine:schema:create -n --env=test
+    $ bin/console doctrine:fixtures:load -n --env=test
     $ ./vendor/bin/phpunit
-  ~~~
+~~~
