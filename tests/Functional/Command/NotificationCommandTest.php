@@ -12,7 +12,7 @@ class NotificationCommandTest extends KernelTestCase
     /**
      * @dataProvider getDataProvider
      */
-    public function testExecute($expection)
+    public function testExecute(string $expection)
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
